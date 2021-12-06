@@ -15,8 +15,10 @@ class PSO:
                 self.g_best=i
         # print(self.p_best)
         # print(self.g_best)
+    # 目标方程
     def engfunc(self,x:tuple):
         return x[0]-0.5*x[1]
+    # 更新粒子的位置和速度
     def update(self,v:list,x:list,p_best:list,g_best:tuple)->tuple[list,list]:
         w=0.5#权重系数
         c1,c2=2.0,2.0 #加速系数
@@ -26,10 +28,6 @@ class PSO:
         x_update=[]
         v_update=[]
         for i in range(self.num):
-            # print('v',v[i])
-            # print(p_best[i])
-            # print(g_best)
-            # print('v',v[i][0])
             v1_update=w*v[i][0]+c1*r1*(p_best[i][0]-x[i][0])+c2*r2*(g_best[0]-x[i][0])
             v2_update=w*v[i][1]+c1*r1*(p_best[i][1]-x[i][1])+c2*r2*(g_best[1]-x[i][1])
             v_update.append((v1_update,v2_update))
@@ -37,7 +35,7 @@ class PSO:
             x1_update=x[i][0]+v1_update
             x2_update=x[i][1]+v2_update
             x_update.append((round(x1_update,3),round(x2_update,3)))
-        # print('x_update',x_update)
+        print('x_update',x_update)
         return x_update,v_update
     def get_best(self,x_new:list,x_old:list):
         p_best=[]
@@ -79,3 +77,5 @@ if __name__=='__main__':
         x_old=x_new
     print(g_best)
     print(p_best)
+    val_ener=val_pso.engfunc(g_best)
+    print(val_ener)
