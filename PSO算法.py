@@ -56,15 +56,26 @@ class PSO:
             
 
 if __name__=='__main__':
-    val_pso=PSO(10)
-    v=val_pso.grain_speed
-    x_old=val_pso.grain_place
-    p_best=val_pso.p_best
-    g_best=val_pso.g_best
-    # 开始遍历
+    # 初始化粒子个数
+    val_pso=PSO(3)
+    #初始化粒子位置和速度
+    v_new=val_pso.grain_speed
+    print("v_old",v_new)
+    x_new=val_pso.grain_place
+    print("X_old",x_new)
+    p_best=val_pso.p_best# 局部最优
+    g_best=val_pso.g_best# 全局最优
+    print("init_pbest",p_best)
+    print("init_gbest",g_best)
+    # 迭代循环
+    x_old=x_new
     for i in range(2):
-        x_new,v=val_pso.update(v,x_old,p_best,g_best)
+        x_new,v_new=val_pso.update(v_new,x_new,p_best,g_best)
+        print("X:",x_new)
+        print("V:",v_new)
         g_best,p_best=val_pso.get_best(x_new=x_new,x_old=x_old)
+        print("g_best",g_best)
+        print("p_best",p_best)
         x_old=x_new
     print(g_best)
-    # print(p_best)
+    print(p_best)
