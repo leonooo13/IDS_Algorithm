@@ -1,4 +1,5 @@
 import random
+# windows->ra,rn ->能量函数
 class PSO:
     # 定义粒子个数,随机定义粒子位置
     def __init__(self,n) -> None:
@@ -45,7 +46,6 @@ class PSO:
     def get_best(self,x_new:list,x_old:list):
         p_best=[]
         g_best=()
-        win_size_best=0
         temp_max=-999
         # print('xnew',x_new)
         # print(x_old)
@@ -59,13 +59,13 @@ class PSO:
                 temp_max=self.engfunc(p_best[i])
                 g_best=p_best[i]
         return g_best,p_best
+
             
 
 if __name__=='__main__':
     # 初始化窗口
     win_best=random.randint(5,70)
     # win_best=50
-
     # 初始化粒子个数
     val_pso=PSO(10)
     #初始化粒子位置和速度
